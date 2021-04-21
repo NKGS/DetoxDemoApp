@@ -156,6 +156,6 @@ To deliver high quality app requires any team to think about automation testing 
   Since we have made configurations in now we can run detox on emulator.
   
   * First build android app using command : <br /> <code>**detox build -c android.emu.release**</code>
-  * Now run test using command: <br /> <code>**detox build -c android.emu.release**</code>
+  * Now run test using command: <br /> <code>**detox test -c android.emu.release**</code>
   
 
