@@ -142,7 +142,7 @@ To deliver high quality app requires any team to think about automation testing 
     }
   ```
   
-  # Add Detox test
+# Add Detox test
   
   Cli command to intialize jest: <br/>
   <code>**detox init -r jest**</code>
@@ -151,7 +151,7 @@ To deliver high quality app requires any team to think about automation testing 
   
   Navigate to e2e/firstTest.e2e.js and modify it with the test you want to run
   
-  # Running test on device
+# Running test on device
   
   Since we have made configurations in now we can run detox on emulator.
   
