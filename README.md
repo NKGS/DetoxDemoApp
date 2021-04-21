@@ -10,6 +10,7 @@ To deliver high quality app requires any team to think about automation testing 
 1. Create demo app using command: **`react-native init DetoxDemoApp`**
 2. Install detox cli : **`npm install -g detox-cli`**
 3. Navigate to your root directory and install detox to add detox library in your react native package.json:**`npm install detox --save-dev`**
+4. Also install jest-circus library using command **` npm install jest-circus --save-dev `**
 
 ## Configuring setup on Android
 
@@ -50,6 +51,31 @@ To deliver high quality app requires any team to think about automation testing 
     }
   ```
   
+* Also add below buildType changes to same file. If you are having release build test or some other buildTypes then add **mainfestPlaceholders tag** to same
+
+  ```
+   buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+            manifestPlaceholders = [
+                uses_clear_text_traffic: "true",
+            ]
+        }
+   }
+  ```
+  
+* In AndroidMainfest file add below config:  
+
+  ```
+       <application 
+       ....
+       android:usesCleartextTraffic="true"
+       ....>
+       
+       </application>
+  ```
+  
+  
 * Now, create a file called DetoxTest.java in the path <br /> 
   **android/app/src/androidTest/java/com/[your_package]/**
   
@@ -86,3 +112,50 @@ To deliver high quality app requires any team to think about automation testing 
         }
     }
   ```
+  
+# Add Detox Configurations 
+
+* Add the following to the .detoxrc.json file and replace avdName with your emulator name:
+  
+    ```
+      {
+        "testRunner": "jest",
+        "runnerConfig": "e2e/config.json",
+        "configurations": {
+          "android.emu.debug": {
+            "type": "android.emulator",
+            "binaryPath": "android/app/build/outputs/apk/debug/app-debug.apk",
+            "build": "cd android && ./gradlew assembleDebug assembleAndroidTest -DtestBuildType=debug && cd ..",
+            "device": {
+              "avdName": "Pixel_API_29"
+            }
+          },
+          "android.emu.release": {
+            "binaryPath": "android/app/build/outputs/apk/release/app-release.apk",
+            "build": "cd android && ./gradlew assembleRelease assembleAndroidTest -DtestBuildType=release && cd ..",
+            "type": "android.emulator",
+            "device": {
+              "avdName": "Pixel_API_29"
+            }
+          }
+       }
+    }
+  ```
+  
+  # Add Detox test
+  
+  Cli command to intialize jest: <br/>
+  <code>**detox init -r jest**</code>
+  
+  This command will create an “e2e” folder in the root project directory with sample test code.
+  
+  Navigate to e2e/firstTest.e2e.js and modify it with the test you want to run
+  
+  # Running test on device
+  
+  Since we have made configurations in now we can run detox on emulator.
+  
+  * First build android app using command : <br /> <code>**detox build -c android.emu.release**</code>
+  * Now run test using command: <br /> <code>**detox build -c android.emu.release**</code>
+  
+
