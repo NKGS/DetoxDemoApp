@@ -11,6 +11,6 @@ To deliver high quality app requires any team to think about automation testing 
 2. Install detox cli : **`npm install -g detox-cli`**
 3. Navigate to your root directory and install detox to add detox library in your react native package.json:**`npm install detox --save-dev`**
 
-### Configuring setup on Android
+## Configuring setup on Android
 
 
