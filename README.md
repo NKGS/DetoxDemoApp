@@ -127,7 +127,7 @@ To deliver high quality app requires any team to think about automation testing 
             "binaryPath": "android/app/build/outputs/apk/debug/app-debug.apk",
             "build": "cd android && ./gradlew assembleDebug assembleAndroidTest -DtestBuildType=debug && cd ..",
             "device": {
-              "avdName": "Pixel_API_29"
+              "avdName": "Pixel_2_API_28"
             }
           },
           "android.emu.release": {
@@ -135,7 +135,7 @@ To deliver high quality app requires any team to think about automation testing 
             "build": "cd android && ./gradlew assembleRelease assembleAndroidTest -DtestBuildType=release && cd ..",
             "type": "android.emulator",
             "device": {
-              "avdName": "Pixel_API_29"
+              "avdName": "Pixel_2_API_28"
             }
           }
        }
